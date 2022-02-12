@@ -3,6 +3,7 @@ package com.devsuperior.dsCatalog.resources.exceptions;
 
 import java.time.Instant;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -11,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.devsuperior.dsCatalog.Service.exceptions.EntityNotFoundException;
+import com.devsuperior.dsCatalog.Service.exceptions.ResourceNotFoundException;
 
 
 @ControllerAdvice
@@ -30,3 +31,7 @@ public class ResourceExceptionHandler {
       	return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
      }	
 }
+
+
+
+
