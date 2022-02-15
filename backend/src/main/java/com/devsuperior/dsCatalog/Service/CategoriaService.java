@@ -46,6 +46,7 @@ public class CategoriaService {
 		Categoria entity = obj.orElseThrow( () -> new ResourceNotFoundException("Entidade não encontrada") );
 		return new CategoryDTO(entity);
 	}
+	
 	@Transactional
 	public CategoryDTO insert(CategoryDTO dto) {
 		Categoria entity = new Categoria();
@@ -53,6 +54,7 @@ public class CategoriaService {
 		entity = rep.save(entity);
 		return new CategoryDTO(entity);
 	}
+	
 	@Transactional
 	public CategoryDTO update(Long id, CategoryDTO dto) {
     try {
