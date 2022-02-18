@@ -11,6 +11,8 @@ import org.hibernate.action.internal.EntityActionVetoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import com.devsuperior.dsCatalog.repositories.CategoriaRepositorio;
 import com.devsuperior.dsCatalog.Service.exceptions.DatabaseException;
@@ -27,16 +29,19 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepositorio  rep;
 		
+	
+	
 	@Transactional(readOnly = true) 
-	public List<CategoryDTO> FindAll(){
-	List<Categoria> list = rep.findAll();
-    //List<CategoryDTO> listDTO =   list.stream().map(x->new CategoryDTO(x)).collect(Collectors.toList());
-    List<CategoryDTO> listDTO = new ArrayList<>();
-     for (Categoria cat: list) {
-    	     listDTO.add(new CategoryDTO(cat));
-    	 }    
-     return listDTO;	
- 	}
+	public Page<CategoryDTO> FindAllPaged(PageRequest pageRequest){
+	
+	Page<Categoria> list = rep.findAll(pageRequest);
+    Page<CategoryDTO> listDTO =   list.map(x->new CategoryDTO(x));
+   	
+	//List<CategoryDTO> listDTO = new ArrayList<>();
+    //for (Categoria cat: list) {listDTO.add(new CategoryDTO(cat));}    
+    
+     return  listDTO;	
+	}
 
 		
 	@Transactional(readOnly = true)
