@@ -16,7 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnDefault;
+//import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Table(name= "tb_product")
